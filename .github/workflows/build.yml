@@ -11,10 +11,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.7.1
       - name: Build
-        run: chmod +x gradlew && ./gradlew build --no-daemon
+        run: gradle build --no-daemon
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
           name: selfhost-jar
           path: build/libs/selfhost-*.jar
+    
